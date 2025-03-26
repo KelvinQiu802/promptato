@@ -1,16 +1,13 @@
-import { Calendar, ChevronDown, Home, Inbox, Search, Settings } from "lucide-react"
+import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
 import {
     Sidebar,
     SidebarContent,
     SidebarGroup,
     SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
-    SidebarMenuSub,
-    SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from "@/components/ui/context-menu"
+import { Collapsible } from "@/components/ui/collapsible"
+import FolderMenuItem from "../FolderMenuItem"
+import PromptMenuItem from "../PromptMenuItem"
 
 // Menu items.
 const items = [
@@ -48,41 +45,8 @@ const AppSidebar = () => {
                 <SidebarGroup>
                     <SidebarMenu>
                         <Collapsible defaultOpen className="group/collapsible">
-                            <SidebarMenuItem>
-                                {/* 这里是父标题 */}
-                                <ContextMenu>
-                                    <ContextMenuTrigger>
-                                        <CollapsibleTrigger asChild>
-                                            <SidebarMenuButton>
-                                                <ChevronDown className="transition-transform group-data-[state=closed]/collapsible:rotate-[-90deg]" />
-                                                btn
-                                            </SidebarMenuButton>
-                                        </CollapsibleTrigger>
-                                        <ContextMenuContent>
-                                            <ContextMenuItem>Folder Context</ContextMenuItem>
-                                        </ContextMenuContent>
-                                    </ContextMenuTrigger>
-                                </ContextMenu>
-                                <ContextMenu>
-                                    <ContextMenuTrigger>
-                                        {/* 这里是子标题 */}
-                                        <CollapsibleContent>
-                                            <SidebarMenuSub>
-                                                {items.map((item) => (
-                                                    <SidebarMenuSubItem key={item.title}>
-                                                        <SidebarMenuButton onClick={() => { }}>
-                                                            {item.title}
-                                                        </SidebarMenuButton>
-                                                    </SidebarMenuSubItem>
-                                                ))}
-                                            </SidebarMenuSub>
-                                        </CollapsibleContent>
-                                    </ContextMenuTrigger>
-                                    <ContextMenuContent>
-                                        <ContextMenuItem>Item Contenxt</ContextMenuItem>
-                                    </ContextMenuContent>
-                                </ContextMenu>
-                            </SidebarMenuItem>
+                            <FolderMenuItem title="Folder" />
+                            <PromptMenuItem items={items} />
                         </Collapsible>
                     </SidebarMenu>
                 </SidebarGroup>
