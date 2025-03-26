@@ -41,7 +41,7 @@ const items = [
     },
 ]
 
-export default function AppSidebar() {
+const AppSidebar = () => {
     return (
         <Sidebar collapsible="none" className="h-screen overflow-y-auto">
             <SidebarContent>
@@ -118,3 +118,5 @@ export default function AppSidebar() {
         </Sidebar>
     )
 }
+
+export default AppSidebar

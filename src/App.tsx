@@ -1,17 +1,14 @@
 import './App.css'
-import AppSidebar from '@/components/AppSidebar'
-import Editor from '@/components/Editor'
 import OptionPanel from '@/components/OptionPanel'
-import { SidebarProvider } from './components/ui/sidebar'
+import SidebarWrapper from '@/components/Sidebar/SidebarWrapper'
+import Editor from '@/components/Editor'
 
 function App() {
   return (
     <div className='flex'>
-      <SidebarProvider>
-        <AppSidebar />
-        <Editor />
-        <OptionPanel />
-      </SidebarProvider>
+      <SidebarWrapper />
+      <Editor />
+      <OptionPanel />
     </div>
   )
 }
