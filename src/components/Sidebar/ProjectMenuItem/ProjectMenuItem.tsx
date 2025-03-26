@@ -2,9 +2,9 @@ import { ContextMenu, ContextMenuItem, ContextMenuTrigger, ContextMenuContent } 
 import { CollapsibleTrigger } from "@/components/ui/collapsible";
 import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import { ChevronDown } from "lucide-react";
-import { FolderMenuItemProps } from "./interface";
+import { ProjectMenuItemProps } from "./interface";
 
-export default function FolderMenuItem({ title }: FolderMenuItemProps) {
+export default function ProjectMenuItem({ title }: ProjectMenuItemProps) {
     return (
         <ContextMenu>
             <ContextMenuTrigger>
@@ -17,7 +17,7 @@ export default function FolderMenuItem({ title }: FolderMenuItemProps) {
                     </ SidebarMenuItem>
                 </CollapsibleTrigger>
                 <ContextMenuContent>
-                    <ContextMenuItem>Folder Context</ContextMenuItem>
+                    <ContextMenuItem>Create a </ContextMenuItem>
                 </ContextMenuContent>
             </ContextMenuTrigger>
         </ContextMenu>

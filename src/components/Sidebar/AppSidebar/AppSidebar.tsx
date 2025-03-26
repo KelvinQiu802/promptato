@@ -6,7 +6,7 @@ import {
     SidebarMenu,
 } from "@/components/ui/sidebar"
 import { Collapsible } from "@/components/ui/collapsible"
-import FolderMenuItem from "../FolderMenuItem"
+import ProjectMenuItem from "../ProjectMenuItem"
 import PromptMenuItem from "../PromptMenuItem"
 
 // Menu items.
@@ -45,7 +45,7 @@ const AppSidebar = () => {
                 <SidebarGroup>
                     <SidebarMenu>
                         <Collapsible defaultOpen className="group/collapsible">
-                            <FolderMenuItem title="Folder" />
+                            <ProjectMenuItem title="Folder" />
                             <PromptMenuItem items={items} />
                         </Collapsible>
                     </SidebarMenu>
