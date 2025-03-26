@@ -14,7 +14,7 @@ export default function SidebarWrapper() {
                     <ContextMenuItem>
                         <div className='text-sm flex items-center gap-2'>
                             <PlusCircle className='w-4 h-4' />
-                            Create a Project
+                            Global Context
                         </div>
                     </ContextMenuItem>
                 </ContextMenuContent>

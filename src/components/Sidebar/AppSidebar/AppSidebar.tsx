@@ -1,5 +1,4 @@
 import { Calendar, ChevronDown, Home, Inbox, Search, Settings } from "lucide-react"
-
 import {
     Sidebar,
     SidebarContent,
@@ -11,6 +10,7 @@ import {
     SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from "@/components/ui/context-menu"
 
 // Menu items.
 const items = [
@@ -49,67 +49,39 @@ const AppSidebar = () => {
                     <SidebarMenu>
                         <Collapsible defaultOpen className="group/collapsible">
                             <SidebarMenuItem>
-                                <CollapsibleTrigger asChild>
-                                    <SidebarMenuButton>
-                                        <ChevronDown className="transition-transform group-data-[state=closed]/collapsible:rotate-[-90deg]" />
-                                        btn
-                                    </SidebarMenuButton>
-                                </CollapsibleTrigger>
-                                <CollapsibleContent>
-                                    <SidebarMenuSub>
-                                        {items.map((item) => (
-                                            <SidebarMenuSubItem key={item.title}>
-                                                <SidebarMenuButton onClick={() => { }}>
-                                                    123
-                                                </SidebarMenuButton>
-                                            </SidebarMenuSubItem>
-                                        ))}
-                                    </SidebarMenuSub>
-                                </CollapsibleContent>
-                            </SidebarMenuItem>
-                        </Collapsible>
-                        {/* Next One */}
-                        <Collapsible defaultOpen className="group/collapsible">
-                            <SidebarMenuItem>
-                                <CollapsibleTrigger asChild>
-                                    <SidebarMenuButton>
-                                        <ChevronDown className="transition-transform group-data-[state=closed]/collapsible:rotate-[-90deg]" />
-                                        btn
-                                    </SidebarMenuButton>
-                                </CollapsibleTrigger>
-                                <CollapsibleContent>
-                                    <SidebarMenuSub>
-                                        {items.map((item) => (
-                                            <SidebarMenuSubItem key={item.title}>
-                                                <SidebarMenuButton onClick={() => { }}>
-                                                    123
-                                                </SidebarMenuButton>
-                                            </SidebarMenuSubItem>
-                                        ))}
-                                    </SidebarMenuSub>
-                                </CollapsibleContent>
-                            </SidebarMenuItem>
-                        </Collapsible>
-                        {/* Next One */}
-                        <Collapsible defaultOpen className="group/collapsible">
-                            <SidebarMenuItem>
-                                <CollapsibleTrigger asChild>
-                                    <SidebarMenuButton>
-                                        <ChevronDown className="transition-transform group-data-[state=closed]/collapsible:rotate-[-90deg]" />
-                                        btn
-                                    </SidebarMenuButton>
-                                </CollapsibleTrigger>
-                                <CollapsibleContent>
-                                    <SidebarMenuSub>
-                                        {items.map((item) => (
-                                            <SidebarMenuSubItem key={item.title}>
-                                                <SidebarMenuButton onClick={() => { }}>
-                                                    123
-                                                </SidebarMenuButton>
-                                            </SidebarMenuSubItem>
-                                        ))}
-                                    </SidebarMenuSub>
-                                </CollapsibleContent>
+                                {/* 这里是父标题 */}
+                                <ContextMenu>
+                                    <ContextMenuTrigger>
+                                        <CollapsibleTrigger asChild>
+                                            <SidebarMenuButton>
+                                                <ChevronDown className="transition-transform group-data-[state=closed]/collapsible:rotate-[-90deg]" />
+                                                btn
+                                            </SidebarMenuButton>
+                                        </CollapsibleTrigger>
+                                        <ContextMenuContent>
+                                            <ContextMenuItem>Folder Context</ContextMenuItem>
+                                        </ContextMenuContent>
+                                    </ContextMenuTrigger>
+                                </ContextMenu>
+                                <ContextMenu>
+                                    <ContextMenuTrigger>
+                                        {/* 这里是子标题 */}
+                                        <CollapsibleContent>
+                                            <SidebarMenuSub>
+                                                {items.map((item) => (
+                                                    <SidebarMenuSubItem key={item.title}>
+                                                        <SidebarMenuButton onClick={() => { }}>
+                                                            {item.title}
+                                                        </SidebarMenuButton>
+                                                    </SidebarMenuSubItem>
+                                                ))}
+                                            </SidebarMenuSub>
+                                        </CollapsibleContent>
+                                    </ContextMenuTrigger>
+                                    <ContextMenuContent>
+                                        <ContextMenuItem>Item Contenxt</ContextMenuItem>
+                                    </ContextMenuContent>
+                                </ContextMenu>
                             </SidebarMenuItem>
                         </Collapsible>
                     </SidebarMenu>
