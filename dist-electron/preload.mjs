@@ -20,3 +20,10 @@ electron.contextBridge.exposeInMainWorld("ipcRenderer", {
   // You can expose other APTs you need here.
   // ...
 });
+electron.contextBridge.exposeInMainWorld("electronStore", {
+  get: (key) => electron.ipcRenderer.invoke("electron-store-get", key),
+  set: (key, value) => electron.ipcRenderer.invoke("electron-store-set", key, value),
+  delete: (key) => electron.ipcRenderer.invoke("electron-store-delete", key),
+  clear: () => electron.ipcRenderer.invoke("electron-store-clear"),
+  has: (key) => electron.ipcRenderer.invoke("electron-store-has", key)
+});

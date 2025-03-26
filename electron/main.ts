@@ -1,8 +1,20 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+import Store from 'electron-store'
 
+// Initialize electron-store
+export const store = new Store({
+  defaults: {
+    // Default configuration
+    windowSize: { width: 800, height: 600 },
+    theme: 'light',
+    // Add other default values as needed
+  }
+})
+
+// @ts-expect-error
 const require = createRequire(import.meta.url)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -27,11 +39,23 @@ process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL ? path.join(process.env.APP_ROOT, 
 let win: BrowserWindow | null
 
 function createWindow() {
+  const windowSize = store.get('windowSize')
+
   win = new BrowserWindow({
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
+    width: windowSize.width,
+    height: windowSize.height,
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
     },
+  })
+
+  // Save window size when resized
+  win.on('resize', () => {
+    if (win && !win.isMaximized()) {
+      const { width, height } = win.getBounds()
+      store.set('windowSize', { width, height })
+    }
   })
 
   // Test active push message to Renderer-process.
@@ -66,3 +90,27 @@ app.on('activate', () => {
 })
 
 app.whenReady().then(createWindow)
+
+// Set up IPC handlers for electron-store
+ipcMain.handle('electron-store-get', (_, key) => {
+  return store.get(key)
+})
+
+ipcMain.handle('electron-store-set', (_, key, value) => {
+  store.set(key, value)
+  return true
+})
+
+ipcMain.handle('electron-store-delete', (_, key) => {
+  store.delete(key)
+  return true
+})
+
+ipcMain.handle('electron-store-clear', () => {
+  store.clear()
+  return true
+})
+
+ipcMain.handle('electron-store-has', (_, key) => {
+  return store.has(key)
+})

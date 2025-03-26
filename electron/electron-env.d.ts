@@ -24,4 +24,11 @@ declare namespace NodeJS {
 // Used in Renderer process, expose in `preload.ts`
 interface Window {
   ipcRenderer: import('electron').IpcRenderer
+  electronStore: {
+    get: (key: string) => Promise<any>
+    set: (key: string, value: any) => Promise<boolean>
+    delete: (key: string) => Promise<boolean>
+    clear: () => Promise<boolean>
+    has: (key: string) => Promise<boolean>
+  }
 }
